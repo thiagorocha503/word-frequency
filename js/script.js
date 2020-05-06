@@ -8,8 +8,9 @@ function onCount() {
         return;
     }
     var result = countWord(textInput.value);
-    console.log("count> " + result);
-    renderTable(createTable(result));
+    var old_table = document.getElementById("table-result");
+    var new_table = buildTable(result);
+    resultContainer.replaceChild(new_table, old_table);
 }
 function countWord(text) {
     var pattern = RegExp("\\w{1,}", "g");
@@ -26,7 +27,7 @@ function countWord(text) {
     });
     return result;
 }
-function createTable(data) {
+function buildTable(data) {
     var tableContainer = document.createElement("table");
     tableContainer.setAttribute("id", "table-result");
     //  Table header
@@ -42,7 +43,6 @@ function createTable(data) {
     data.forEach(function (e) {
         var row = document.createElement("tr");
         var word = document.createElement("td");
-        word.setAttribute("translate", "no");
         word.innerHTML = e["word"];
         var count = document.createElement("td");
         count.setAttribute("translate", "no");
@@ -51,10 +51,5 @@ function createTable(data) {
         row.appendChild(count);
         tableContainer.appendChild(row);
     });
-    renderTable(tableContainer);
     return tableContainer;
-}
-function renderTable(new_table) {
-    var old_table = document.getElementById("table-result");
-    resultContainer.replaceChild(new_table, old_table);
 }
