@@ -10,7 +10,6 @@ function onCount() {
     var result = countWord(textInput.value);
     var old_table = document.getElementById("table-result");
     var new_table = buildTable(result);
-    // Render Table
     resultContainer.replaceChild(new_table, old_table);
 }
 function countWord(text) {
@@ -19,14 +18,16 @@ function countWord(text) {
     var result = [];
     words.forEach(function (word) {
         var count = 0;
-        words.forEach(function (element) {
-            if (word == element) {
+        words.forEach(function (j) {
+            if (word == j) {
                 count += 1;
             }
         });
         result.push({ "word": word, "count": count });
     });
-    return result;
+    // Sort data 
+    result.sort(function (a, b) { return a["count"] - b["count"]; });
+    return result.reverse();
 }
 function buildTable(data) {
     var tableContainer = document.createElement("table");

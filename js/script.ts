@@ -9,10 +9,11 @@ function onCount() {
         alert("Empty text field");
         return;
     }
+
     let result = countWord(textInput.value);
     let old_table = document.getElementById("table-result");
     let new_table = buildTable(result);
-    // Render Table
+
     resultContainer.replaceChild(new_table, old_table);
 }
 
@@ -24,14 +25,16 @@ function countWord(text: string): Array<{}> {
     let result: Array<{}> = [];
     words.forEach(word => {
         let count: number = 0;
-        words.forEach(element => {
-            if (word == element) {
+        words.forEach(j => {
+            if (word == j) {
                 count += 1;
             }
         });
-        result.push({"word": word, "count": count });
+        result.push({ "word": word, "count": count });
     });
-    return result;
+    // Sort data 
+    result.sort((a,b)=> a["count"] - b["count"]);
+    return result.reverse();
 
 }
 
@@ -39,6 +42,7 @@ function countWord(text: string): Array<{}> {
 function buildTable(data: Array<{}>): HTMLTableElement {
     let tableContainer = document.createElement("table");
     tableContainer.setAttribute("id", "table-result");
+
     let tableContent = `
         <tr>
             ${["Word", "Count"].map(element => (
