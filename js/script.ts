@@ -30,7 +30,7 @@ function countWord(text: string): Array<{}> {
                 count += 1;
             }
         });
-        result.push({"word": i, "count": count });
+        result.push({ "word": i, "count": count });
     });
     return result;
 
@@ -41,30 +41,20 @@ function buildTable(data: Array<{}>): HTMLTableElement {
     let tableContainer = document.createElement("table");
     tableContainer.setAttribute("id", "table-result");
 
-    //  Table header
-    let tableHeader: HTMLElement = document.createElement("tr");
-    let wordHeader: HTMLElement = document.createElement("th");
-    wordHeader.innerHTML = "Word";
-    tableHeader.appendChild(wordHeader);
-
-    let countHeader: HTMLElement = document.createElement("th");
-    countHeader.innerHTML = "Count"
-    tableHeader.appendChild(countHeader);
-
-    tableContainer.appendChild(tableHeader);
-    //  Table row
-    data.forEach(e => {
-        let row = document.createElement("tr");
-        let word = document.createElement("td");
-        word.innerHTML = e["word"];
-        let count = document.createElement("td");
-        count.setAttribute("translate", "no");
-        count.innerHTML = e["count"];
-
-        row.appendChild(word);
-        row.appendChild(count);
-        tableContainer.appendChild(row);
-    });
+    let tableContent = `
+        <tr>
+            ${["Word", "Count"].map(element => (
+                `<th>${element}</th>`
+            )).join("")}
+        </tr>
+        ${data.map(element => (`
+           <tr>
+                <td>${element["word"]}</td>
+                <td>${element["count"]}</td>
+           </tr>
+        `)).join("")}          
+    `;
+    tableContainer.insertAdjacentHTML("beforeend", tableContent);
     return tableContainer;
 
 }

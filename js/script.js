@@ -1,5 +1,6 @@
 var textInput = document.getElementById("text-input");
 var resultContainer = document.getElementById("result-container");
+
 function onCount() {
     // clear table
     document.getElementById("table-result").innerHTML = "";
@@ -12,13 +13,14 @@ function onCount() {
     var new_table = buildTable(result);
     resultContainer.replaceChild(new_table, old_table);
 }
+
 function countWord(text) {
     var pattern = RegExp("\\w{1,}", "g");
     var words = text.match(pattern);
     var result = [];
-    words.forEach(function (i) {
+    words.forEach(function(i) {
         var count = 0;
-        words.forEach(function (j) {
+        words.forEach(function(j) {
             if (i == j) {
                 count += 1;
             }
@@ -27,29 +29,11 @@ function countWord(text) {
     });
     return result;
 }
+
 function buildTable(data) {
     var tableContainer = document.createElement("table");
     tableContainer.setAttribute("id", "table-result");
-    //  Table header
-    var tableHeader = document.createElement("tr");
-    var wordHeader = document.createElement("th");
-    wordHeader.innerHTML = "Word";
-    tableHeader.appendChild(wordHeader);
-    var countHeader = document.createElement("th");
-    countHeader.innerHTML = "Count";
-    tableHeader.appendChild(countHeader);
-    tableContainer.appendChild(tableHeader);
-    //  Table row
-    data.forEach(function (e) {
-        var row = document.createElement("tr");
-        var word = document.createElement("td");
-        word.innerHTML = e["word"];
-        var count = document.createElement("td");
-        count.setAttribute("translate", "no");
-        count.innerHTML = e["count"];
-        row.appendChild(word);
-        row.appendChild(count);
-        tableContainer.appendChild(row);
-    });
+    var tableContent = "\n        <tr>\n            " + ["Word", "Count"].map(function(element) { return ("<th>" + element + "</th>"); }).join("") + "\n        </tr>\n        " + data.map(function(element) { return ("\n           <tr>\n                <td>" + element["word"] + "</td>\n                <td>" + element["count"] + "</td>\n           </tr>\n        "); }).join("") + "          \n    ";
+    tableContainer.insertAdjacentHTML("beforeend", tableContent);
     return tableContainer;
 }
