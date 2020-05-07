@@ -30,7 +30,7 @@ function countWord(text: string): Array<{}> {
                 count += 1;
             }
         });
-        result.push({ "word": i, "count": count });
+        result.push({"word": i, "count": count });
     });
     return result;
 
@@ -66,5 +66,5 @@ function buildTable(data: Array<{}>): HTMLTableElement {
         tableContainer.appendChild(row);
     });
     return tableContainer;
-    
+
 }

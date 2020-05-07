@@ -102,11 +102,17 @@ label {
 }
 
 textarea {
-    border: 1px solid #800080;
+    border: 1px solid grey;
     border-radius: 5px;
-    height: 150px;
+    padding: 3px;
+    height: 130px;
     resize: none;
     width: 100%;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #800080;
 }
 
 button {
@@ -142,10 +148,10 @@ table {
     width: 100%;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 600px) {
     /* Desktop */
     #app {
-        width: 600px;
+        width: 450px;
         margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
@@ -154,6 +160,65 @@ table {
         height: auto;
     }
     table {
-        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
     }
+}
+
+
+/* 
+    Button ripple from  https://ghinda.net/article/css-ripple-material-design/ 
+ */
+
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
+    background: white;
+    border-radius: 100%;
+    opacity: .6;
+    transform: scale(0);
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+    }
+    20% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+button:not(:active):after {
+    animation: ripple 1s ease-out;
+}
+
+
+/* 
+   fixes initial animation run, without user input, on page load.
+   
+*/
+
+button:after {
+    visibility: hidden;
+}
+
+button:focus:after {
+    visibility: visible;
 }
