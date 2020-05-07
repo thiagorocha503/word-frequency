@@ -16,15 +16,23 @@ function countWord(text) {
     var pattern = RegExp("\\w{1,}", "g");
     var words = text.match(pattern);
     var result = [];
-    words.forEach(function (word) {
+    var lenght = words.length;
+    var _loop_1 = function (i) {
+        // Verifica 
+        if (result.filter((function (e) { return e["word"] == words[i]; })).length != 0) {
+            return "continue";
+        }
         var count = 0;
-        words.forEach(function (j) {
-            if (word == j) {
+        for (var j = 0; j < lenght; j++) {
+            if (words[i] == words[j]) {
                 count += 1;
             }
-        });
-        result.push({ "word": word, "count": count });
-    });
+        }
+        result.push({ "word": words[i], "count": count });
+    };
+    for (var i = 0; i < lenght; i++) {
+        _loop_1(i);
+    }
     // Sort data 
     result.sort(function (a, b) { return a["count"] - b["count"]; });
     return result.reverse();

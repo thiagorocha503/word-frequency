@@ -23,17 +23,23 @@ function countWord(text: string): Array<{}> {
     let words: Array<any> = text.match(pattern);
 
     let result: Array<{}> = [];
-    words.forEach(word => {
-        let count: number = 0;
-        words.forEach(j => {
-            if (word == j) {
+    let lenght = words.length;
+    for (let i = 0; i < lenght; i++) {
+        // check if the list result contains the word
+        if (result.filter((element => element["word"] == words[i])).length != 0) {
+            continue;
+        }
+        // count
+        let count: number = 0;      
+        for (let j = 0; j < lenght; j++) {
+            if (words[i] == words[j]) {
                 count += 1;
             }
-        });
-        result.push({ "word": word, "count": count });
-    });
+        }
+        result.push({ "word": words[i], "count": count });
+    }
     // Sort data 
-    result.sort((a,b)=> a["count"] - b["count"]);
+    result.sort((a, b) => a["count"] - b["count"]);
     return result.reverse();
 
 }
@@ -46,8 +52,8 @@ function buildTable(data: Array<{}>): HTMLTableElement {
     let tableContent = `
         <tr>
             ${["Word", "Count"].map(element => (
-                `<th>${element}</th>`
-            )).join("")}
+        `<th>${element}</th>`
+    )).join("")}
         </tr>
         ${data.map(element => (`
            <tr>
