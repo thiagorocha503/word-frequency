@@ -16,7 +16,7 @@ body {
 
 #content-wrap {
     /* Footer height */
-    padding-bottom: 60px;
+    padding-bottom: 50px;
 }
 
 
@@ -26,9 +26,9 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: 50px;
     /* Footer height */
-    line-height: 60px;
+    line-height: 50px;
     background-color: rgba(0, 0, 0, 90%);
 }
 
@@ -57,15 +57,13 @@ body {
 
 #app {
     background-color: white;
-    width: 50%;
     margin-left: auto;
     margin-right: auto;
-    padding: 5px 10px 5px 10px;
     border-radius: 5px;
 }
 
 .row {
-    padding-bottom: 5px;
+    margin-bottom: 10px;
     overflow: hidden;
 }
 
@@ -103,12 +101,16 @@ label {
 
 textarea {
     border: 1px solid grey;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 3px;
     height: 130px;
     resize: none;
     width: 100%;
     outline: none;
+}
+
+textarea:hover {
+    border-color: black;
 }
 
 textarea:focus {
@@ -119,7 +121,7 @@ button {
     cursor: pointer;
     background: #800080;
     color: white;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 15px 5px 15px;
     border-radius: 5px;
 }
 
@@ -134,14 +136,18 @@ button:hover {
 
 /* Smartfone  */
 
+#content-wrap {
+    padding-top: 10px;
+}
+
 #app {
-    margin-top: 2px;
     width: 95%;
     margin-bottom: 20px;
+    padding: 5px 15px 5px 15px;
 }
 
 button {
-    height: 45px;
+    height: 40px;
 }
 
 table {
@@ -150,9 +156,11 @@ table {
 
 @media only screen and (min-width: 600px) {
     /* Desktop */
+    #content-wrap {
+        padding-top: 20px;
+    }
     #app {
         width: 450px;
-        margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -162,7 +170,7 @@ table {
     table {
         margin-left: auto;
         margin-right: auto;
-        width: 400px;
+        width: 100%;
     }
 }
 
