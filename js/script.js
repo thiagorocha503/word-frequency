@@ -1,6 +1,6 @@
 var textInput = document.getElementById("text-input");
 var resultContainer = document.getElementById("result-container");
-function onCount() {
+function onCountWords() {
     // clear table
     document.getElementById("table-result").innerHTML = "";
     if (textInput.value == "") {
@@ -18,10 +18,11 @@ function countWord(text) {
     var result = [];
     var lenght = words.length;
     var _loop_1 = function (i) {
-        // Verifica 
-        if (result.filter((function (e) { return e["word"] == words[i]; })).length != 0) {
+        // check if the list result contains the word
+        if (result.filter((function (element) { return element["word"] == words[i]; })).length != 0) {
             return "continue";
         }
+        // count
         var count = 0;
         for (var j = 0; j < lenght; j++) {
             if (words[i] == words[j]) {

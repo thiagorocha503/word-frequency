@@ -2,7 +2,7 @@ const textInput: HTMLInputElement = document.getElementById("text-input") as HTM
 const resultContainer = document.getElementById("result-container");
 
 
-function onCount() {
+function onCountWords() {
     // clear table
     document.getElementById("table-result").innerHTML = "";
     if (textInput.value == "") {
@@ -30,7 +30,7 @@ function countWord(text: string): Array<{}> {
             continue;
         }
         // count
-        let count: number = 0;      
+        let count: number = 0;
         for (let j = 0; j < lenght; j++) {
             if (words[i] == words[j]) {
                 count += 1;
@@ -51,9 +51,9 @@ function buildTable(data: Array<{}>): HTMLTableElement {
 
     let tableContent = `
         <tr>
-            ${["Word", "Count"].map(element => (
-        `<th>${element}</th>`
-    )).join("")}
+            ${["Word", "Count"].map(element => (`
+                <th>${element}</th>
+            `)).join("")}
         </tr>
         ${data.map(element => (`
            <tr>
